@@ -141,10 +141,10 @@
                     echo 'Valor de $b: ' . $GLOBALS['b'];
                     echo '<br>';
                     echo 'Valor de $c: ' . $GLOBALS['c'];
-                    echo 'Contenido de $z : '. $GLOBALS['z']; 
-                    echo '<br>'
+                    echo '<br>';
+                    print_r($GLOBALS['z']); 
+                    echo '<br>';
                 }
-
                 //llamada a la función 
                 echo '<h4>Respuesta</h4>'; 
                 mostrarValor(); 
