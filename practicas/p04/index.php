@@ -159,7 +159,37 @@
         <br>$c = (double) $a;</p>
 
         <?php
-            echo '<h4>Respuesta</h4>'
+            echo '<h4>Respuesta</h4>';
+            $a = "7 personas";
+            echo 'valor de $a: '; 
+            echo "$a";
+            echo '<br>';
+
+            $b = (integer) $a;
+            echo 'valor de $b: '; 
+            echo "$b";
+            echo '<br>';
+
+            $a = "9E3";
+            echo 'valor de $a: '; 
+            echo "$a";
+            echo '<br>';
+
+            $c = (double) $a;
+            echo 'valor de $c: '; 
+            echo "$c";
+            echo '<br>';  
+        ?>
+
+    <h2>Ejercicio 6</h2>
+    <p>Dar y comporbar el valor boolenao de las variables $a, $b, $c, $d, $e, $f
+        y muéstralas usando la función var_dump(<datos>).
+        <br>Después investiga una función de PHP que permita transformar el valor booleano de $c y $e
+        en uno que se pueda mostrar con un echo:</p>
+
+        <?php
+            
         ?>
 </body>
+
 </html>
