@@ -64,6 +64,12 @@
             echo "$c"; 
             echo '</ul>';
 
+            echo '<li> Describe y muestra en la página obtenida que ocurrió en el segundo bloque de asignaciones</li>'; 
+            echo '<h4>Respuesta:</h4>';
+            echo '<p> En el primer bloque de asignaciones a contaba con el valor de "ManejadorSQL", en el segundo bloque se actualiza a ';
+            echo "$a"; 
+            echo ', $b ahora es una referencia a $a, esto quiere decir que cualquier cambio en $a se refleja también en $b. Se tiene en cuenta que $c 
+                 también es una referencia a $a por lo tanto cualquier cambio en la varible $a afecta directamente a las variables con una referencia a ella</p>'; 
 
         ?>
 
