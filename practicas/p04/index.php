@@ -69,7 +69,7 @@
             echo '<p> En el primer bloque de asignaciones a contaba con el valor de "ManejadorSQL", en el segundo bloque se actualiza a ';
             echo "$a"; 
             echo ', $b ahora es una referencia a $a, esto quiere decir que cualquier cambio en $a se refleja también en $b. Se tiene en cuenta que $c 
-                 también es una referencia a $a por lo tanto cualquier cambio en la varible $a afecta directamente a las variables con una referencia a ella</p>'; 
+                 también es una referencia a $a por lo tanto cualquier cambio en la varible $a afecta directamente a las variables con una referencia a ella</p></ol>'; 
         ?>
 
     <h2>Ejercicio 3</h2> 
@@ -161,7 +161,7 @@
         <?php
             echo '<h4>Respuesta</h4>';
             $a = "7 personas";
-            echo 'valor de $a: '; 
+            echo 'Valor de $a: '; 
             echo "$a";
             echo '<br>';
 
@@ -222,6 +222,27 @@
             echo 'Valor de $e: ';
             echo var_export($e, true); 
             echo '<br>';
+        ?>
+    
+    <h2>Ejercicio 7</h2>
+    <p>Usando la variable predefinida $_SERVER, determina lo siguiente:
+        <ol>
+            <li>La versión de Apache y PHP</li>
+            <li>El nombre del sistema operativo (servidor)</li>
+            <li>El idioma del navegador (cliente)</li>
+        </ol>
+    </p>
+        
+        <?php
+            echo '<h4>Respuesta</h4>';
+            echo 'Versión de Apache y PHP: ';  
+            echo $_SERVER['SERVER_SOFTWARE']; 
+            echo '<br>'; 
+            echo 'Nombre del sistema operativo: '; 
+            echo PHP_OS; 
+            echo '<br>';
+            echo 'Idioma del navegador (cliente): ';  
+            echo $_SERVER['HTTP_ACCEPT_LANGUAGE']; 
         ?>
 </body>
 
