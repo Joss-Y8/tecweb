@@ -188,7 +188,40 @@
         en uno que se pueda mostrar con un echo:</p>
 
         <?php
-            
+            $a = "0";
+            $b = "TRUE";
+            $c = FALSE;
+            $d = ($a OR $b);
+            $e = ($a AND $c);
+            $f = ($a XOR $b);
+
+            echo '<h4>Respuesta</h4>';
+            echo 'Valor de $a: '; 
+            var_dump($a); 
+            echo '<br>';
+            echo 'Valor de $b: ';
+            var_dump($b); 
+            echo '<br>';
+            echo 'Valor de $c: ';
+            var_dump($c); 
+            echo '<br>';
+            echo 'Valor de $d: ';
+            var_dump($d); 
+            echo '<br>';
+            echo 'Valor de $e: ';
+            var_dump($e); 
+            echo '<br>';
+            echo 'Valor de $f: ';
+            var_dump($f); 
+            echo '<br>';
+
+            echo '<h4> La función var_export() retorna una representación en cadena del valor para ser mostrado facilmente con un echo: </h4>'; 
+            echo 'Valor de $c: ';
+            echo var_export($c, true); 
+            echo '<br>';
+            echo 'Valor de $e: ';
+            echo var_export($e, true); 
+            echo '<br>';
         ?>
 </body>
 
