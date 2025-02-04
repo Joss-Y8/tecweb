@@ -81,7 +81,7 @@
         <br> $c = $b*10; 
         <br> $a .= $b; 
         <br> $b *= $c; 
-        <br> $z [0] = "MySQL"</p>
+        <br> $z [0] = "MySQL";</p>
 
         <?php 
             echo '<h4>Respuesta</h4>'; 
@@ -97,7 +97,7 @@
             echo "$b";
             echo '<br>';
 
-            $c = intval($b)*10;
+            @$c = $b*10;
             echo "$c"; 
             echo '<br>';
 
@@ -105,8 +105,7 @@
             echo "$a";  
             echo '<br>';
 
-            $b = intval($b);
-            $b *= $c;
+            @$b *= $c;
             echo "$b";
             echo '<br>';
 
@@ -123,7 +122,33 @@
                 250
                 Array ( [0] => MySQL ) */
         ?>
-        
+    
+    <h2>Ejercicio 4</h2>
+    <p>Lee y muestra los valores de las variables del ejercicio anterior, pero ahora con la ayuda de
+    la matriz $GLOBALS o del modificador global de PHP.</p>
+        <?php 
+            $a = "PHP5"; 
+            $z[] = &$a;  
+            $b = "5a version de PHP"; 
+            @$c = $b*10; 
+            $a .= $b; 
+            @$b *= $c; 
+            $z[0] = "MySQL";
+
+                function mostrarValor(){
+                    echo 'Valor de $a: ' . $GLOBALS['a'];
+                    echo '<br>'; 
+                    echo 'Valor de $b: ' . $GLOBALS['b'];
+                    echo '<br>';
+                    echo 'Valor de $c: ' . $GLOBALS['c'];
+                    echo 'Contenido de $z : '. $GLOBALS['z']; 
+                    echo '<br>'
+                }
+
+                //llamada a la función 
+                echo '<h4>Respuesta</h4>'; 
+                mostrarValor(); 
+        ?>
 
 </body>
 </html>
