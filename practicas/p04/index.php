@@ -70,8 +70,60 @@
             echo "$a"; 
             echo ', $b ahora es una referencia a $a, esto quiere decir que cualquier cambio en $a se refleja también en $b. Se tiene en cuenta que $c 
                  también es una referencia a $a por lo tanto cualquier cambio en la varible $a afecta directamente a las variables con una referencia a ella</p>'; 
-
         ?>
+
+    <h2>Ejercicio 3</h2> 
+    <p>Muestra el contenido de cada variable inmediatamente después de cada asignación, 
+        verificar la evolución del tipo de estas variables (imprime todos los componentes de los arreglos): 
+        <br> $a = "PHP5"; 
+        <br> $z[] = &$a;  
+        <br> $b = "5a version de PHP"; 
+        <br> $c = $b*10; 
+        <br> $a .= $b; 
+        <br> $b *= $c; 
+        <br> $z [0] = "MySQL"</p>
+
+        <?php 
+            echo '<h4>Respuesta</h4>'; 
+            $a = "PHP5"; 
+            echo "$a"; 
+            echo '<br>';
+
+            $z[] = &$a;
+            print_r($z); 
+            echo '<br>';
+
+            $b = "5a version de PHP";
+            echo "$b";
+            echo '<br>';
+
+            $c = intval($b)*10;
+            echo "$c"; 
+            echo '<br>';
+
+            $a .= $b;
+            echo "$a";  
+            echo '<br>';
+
+            $b = intval($b);
+            $b *= $c;
+            echo "$b";
+            echo '<br>';
+
+            $z[0] = "MySQL";
+            print_r($z); 
+            echo '<br>';
+
+             /*Resultado en PHP tester: 
+                PHP5
+                Array ( [0] => PHP5 )
+                5a version de PHP
+                50
+                PHP55a version de PHP
+                250
+                Array ( [0] => MySQL ) */
+        ?>
+        
 
 </body>
 </html>
