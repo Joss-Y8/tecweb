@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Práctica 4</title>
+    <style> 
+        table {
+            border-collapse: collapse; 
+            width: 50%;
+            margin: 20px; 
+        }
+        th, td {
+            border: 1px solid black; 
+            padding: 8px; 
+            text-aling: center; 
+        }
+        th{
+            background-color: lightgray; 
+        }
+    </style>
 </head>
 <body>
     <h2>Ejercicio 1</h2>
@@ -34,10 +49,36 @@
     </ul></p>
     <?php
         require_once __DIR__ .'/src/funciones.php';
+        echo '<h3>Función creada con while</h3>';
         if(isset($_GET['nume']))
         {
             entero_aleatorio($_GET['nume']); 
         }
+
+        echo '<h3>Función creada con do-while</h3>';
+        if(isset($_GET['nume']))
+        {
+            aleatorio_do($_GET['nume']); 
+        }
+    ?>
+
+    <h2>Ejercicio 4</h2>
+    <p>Crear un arreglo cuyos índices van de 97 a 122 y cuyos valores son las letras de la 'a'
+        a la 'z'. Usa la función chr(n) que devuelve el caracter cuyo código ASCII es n para
+        poner el valor en cada índice. Es decir: 
+        <br>[97] => a
+        <br>[98] => b
+        <br>[99] => c
+        <br>...
+        <br>[122] => z
+        <ul>
+            <li>Crea el arreglo con un ciclo for</li>
+            <li>Lee el arreglo y crea una tabla en XHTML con echo y un ciclo foreach</li>
+    </ul></p>
+    <?php
+        require_once __DIR__ .'/src/funciones.php';
+        echo "<h4>Mandamos a llamar a la funcion para mostrar la tabla del arreglo</h4>"; 
+        arregloAscii(); 
     ?>
 
     <h2>Ejemplo de POST</h2>
