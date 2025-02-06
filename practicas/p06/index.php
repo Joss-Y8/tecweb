@@ -162,7 +162,29 @@
         </ul> 
     <p>La matrícula debe tener el siguiente formato LLLNNNN, donde las L pueden ser letras de
     la A-Z y las N pueden ser números de 0-9.</p>
-    
-
+    <?php
+        echo '<h4>Respuesta:</h4>'; 
+        require_once __DIR__.'/src/funciones.php';
+        print_r($parqueVehicular); 
+    ?>
+    <h3>Consulta de vehículos</h3>
+    <form method="post" action="http://localhost/tecweb/practicas/p06/index.php">
+        <label for="matricula">Matrícula:</label>
+        <input type="text" id="matricula" name="matricula">
+        <input type="submit" name="buscar" value="Buscar">
+        <input type="submit" name="todos" value="Mostrar Todos">
+    </form>
+    <?php
+        require_once __DIR__.'/src/funciones.php';
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["buscar"])) {
+                $matricula = $_POST["matricula"];
+                autoMatricula($matricula);
+            } elseif (isset($_POST["todos"])) {
+                echo "<h2>Todos los Autos Registrados</h2>";
+                mostrarAutos();
+            }
+        }
+    ?>
 </body>
 </html>
