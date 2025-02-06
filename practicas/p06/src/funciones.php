@@ -30,4 +30,34 @@
 
         echo "\n$numeros números obtenidos en $iteracion iteraciones";
     } 
+
+    function entero_aleatorio($num){
+        if ($num <= 0) {
+            echo "Inserte un número mayor que 0";
+            return;
+        }
+        $aleatorio = rand(1,1000); 
+        
+        while($aleatorio % $num != 0){
+            $aleatorio = rand (1, 1000); 
+        }
+        echo "Número aleatorio generado: $aleatorio <br>";
+        echo "¡El número $aleatorio es múltiplo de $num!<br>"; 
+    }
+
+    function aleatorio_do($numero_dado) {
+        if ($numero_dado <= 0) {
+            echo "Por favor, ingrese un número mayor que 0.";
+            return;
+        }
+    
+        $numero_aleatorio = 0;
+    
+        do {
+            $numero_aleatorio = rand(1, 1000);
+        } while ($numero_aleatorio % $numero_dado != 0); 
+    
+        echo "Número aleatorio generado: $numero_aleatorio<br>";
+        echo "¡El número $numero_aleatorio es múltiplo de $numero_dado!<br>";
+    }
 ?>
