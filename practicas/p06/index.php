@@ -82,7 +82,7 @@
     ?>
 
     <h2>Ejemplo de POST</h2>
-    <form action="http://localhost/tecweb/practicas/p04/index.php" method="post">
+    <form action="http://localhost/tecweb/practicas/p06/index.php" method="post">
         Name: <input type="text" name="name"><br>
         E-mail: <input type="text" name="email"><br>
         <input type="submit">
@@ -96,5 +96,73 @@
             echo $_POST["email"];
         }
     ?>
+
+    <h2>Ejercicio 5</h2>
+    <p>Usar las variables $edad y $sexo en una instrucción if para identificar una persona de 
+        sexo "femenino", cuya edad oscile entre los 18 y 35 años, mostrar un mensaje de
+        bienvenida apropiado. Por ejemplo: 
+        <br>Bienvenida, usted está en el rango de edad permitido.
+        <br>En caso contrario deberá devolverse otro mensaje indicando el error.
+        <ul>
+            <li>Los valores para $edad y $sexo se deben obtener por medio de un formulario en HTML.</li>
+            <li>Utilizar la Variable Superglobal $_POST (revisar documentación).</li>
+    </ul></p>
+    <h3>Ingreso de datos</h3>
+    <form action="http://localhost/tecweb/practicas/p06/index.php" method="post">
+        <label for="edad">Edad: </label>
+        <input type="number" name="edad" id="edad" required><br>
+        <label for="sexo">Sexo:</label>
+        <select name="sexo" id="sexo" required>
+            <option value="femenino">Femenino</option>
+            <option value="masculino">Masculino</option>
+            <option value="otro">Otro</option>
+        </select><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+    <?php
+        // Incluir funciones externas
+        require_once __DIR__.'/src/funciones.php';
+
+        // Procesar el formulario cuando se envíe
+        if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+            // Verificar si los valores están presentes en $_POST
+            if (isset($_POST['edad']) && isset($_POST['sexo'])) {
+                // Obtener valores del formulario
+                $edad = $_POST['edad'];
+                $sexo = $_POST['sexo'];
+
+                // Llamar a la función para identificar a la persona
+                $mensaje = identificarPersona($edad, $sexo);
+
+                // Mostrar el mensaje
+                echo "<h3>Resultado:</h3>";
+                echo "<p>$mensaje</p>";
+            }
+        }
+    ?>
+
+    <h2>Ejercicio 6 </h2>
+    <p>Crea en código duro un arreglo asociativo que sirva para registrar el parque vehicular de
+        una ciudad. Cada vehículo debe ser identificado por:
+        <ul>
+            <li>Matricula</li>
+            <li>Auto</li>
+            <ul>
+                <li>Marca</li>
+                <li>Modelo</li>
+                <li>Tipo (sedan|hachback|camioneta)</li>
+            </ul>
+            <li>Propietario</li>
+            <ul>
+                <li>Nombre</li>
+                <li>Ciudad</li>
+                <li>Dirección</li>
+            </ul>
+        </ul> 
+    <p>La matrícula debe tener el siguiente formato LLLNNNN, donde las L pueden ser letras de
+    la A-Z y las N pueden ser números de 0-9.</p>
+    
+
 </body>
 </html>
