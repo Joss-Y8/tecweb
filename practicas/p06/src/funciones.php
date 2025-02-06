@@ -76,4 +76,12 @@
         echo "</table>";
     }
 
+    function identificarPersona($edad, $sexo){
+        if($sexo=="Femenino" && $edad >=18 && $edad <=35){
+            return "Bienvenida, usted está en el rango de edad apropiado."; 
+        }
+        else{
+            return "Lo sentimos, no cumple con nuestros criterios."; 
+        }
+    }
 ?>
