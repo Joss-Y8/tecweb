@@ -1,5 +1,4 @@
 <?php
-
     function multiplo($num) {
         if ($num%5==0 && $num%7==0)
             {
@@ -82,6 +81,221 @@
         }
         else{
             return "Lo sentimos, no cumple con nuestros criterios."; 
+        }
+    }
+
+    $parqueVehicular = array(
+        'UBN6338' => array(
+            'auto' => array(
+                'marca' => 'HONDA',
+                'modelo' => '2020', 
+                'tipo' => 'Camioneta'
+            ),
+            'Propietario' => array(
+                'nombre' => 'Alfonzo Esparza',
+                'ciudad' => 'Puebla, Pue.',
+                'direccion' => 'C.U., Jardines de San Manuel'
+            )
+        ), 
+        'UBN6339' => array(
+            'auto' => array(
+                'marca' => 'MAZADA',
+                'modelo' => '2019', 
+                'tipo' => 'Sedan'
+            ),
+            'Propietario' => array(
+                'nombre' => 'Ma. del consuelo Molina',
+                'ciudad' => 'Puebla, Pue.',
+                'direccion' => '97 oriente'
+            )
+        ),
+        'GHJ9012' => array(
+            'auto' => array(
+                'marca' => 'Toyota',
+                'modelo' => '2021', 
+                'tipo' => 'Sedan'
+            ),
+            'Propietario' => array(
+                'nombre' => 'Juan Pérez',
+                'ciudad' => 'Cholula, Pue.',
+                'direccion' => 'Av. Hidalgo 123'
+            )
+        ),
+        'KLM3456' => array(
+            'auto' => array(
+                'marca' => 'FORD',
+                'modelo' => '2018', 
+                'tipo' => 'Hachback'
+            ),
+            'Propietario' => array(
+                'nombre' => 'Laura García',
+                'ciudad' => 'Atlixco, Pue.',
+                'direccion' => 'Calle Flores 456'
+            )
+        ),
+        'NOP7890' => array(
+            'auto' => array(
+                'marca' => 'Chevrolet',
+                'modelo' => '2020', 
+                'tipo' => 'Camioneta'
+            ),
+            'Propietario' => array(
+                'nombre' => 'Carlos Martinez',
+                'ciudad' => 'Tehuacán, Pue.',
+                'direccion' => 'Av. Reforma'
+            )
+        ),
+        'QRS2345' => array(
+            'auto' => array(
+                'marca' => 'Nissan',
+                'modelo' => '2022', 
+                'tipo' => 'Sedan'
+            ),
+            'Propietario' => array(
+                'nombre' => 'Ana López ',
+                'ciudad' => 'San Andrés Cholula, Pue.',
+                'direccion' => 'Av. Revolución 312'
+            )
+        ),
+        'TUV9875' => array(
+            'auto' => array(
+                'marca' => 'Kia',
+                'modelo' => '2019', 
+                'tipo' => 'hachback'
+            ),
+            'Propietario' => array(
+                'nombre' => 'Pedro Ramírez',
+                'ciudad' => 'Huauchinango, Pue.',
+                'direccion' => 'Calle Juárez 1765'
+            )
+        ),
+        'WXY1234' => array(
+            'auto' => array(
+                'marca' => 'Hyundai',
+                'modelo' => '2021', 
+                'tipo' => 'camioneta'
+            ),
+            'Propietario' => array(
+                'nombre' => 'Sofia Hernández',
+                'ciudad' => 'San Martín Texmelucan, Pue.',
+                'direccion' => 'Calle Morelos 987'
+            )
+        ),
+        'ZAB6548' => array(
+            'auto' => array(
+                'marca' => 'MITSUBISHI',
+                'modelo' => '2020', 
+                'tipo' => 'Sedan'
+            ),
+            'Propietario' => array(
+                'nombre' => 'Diego Torres',
+                'ciudad' => 'Tehuacán, Pue.',
+                'direccion' => 'Las Palmas'
+            )
+        ),
+        'CDE5874' => array(
+            'auto' => array(
+                'marca' => 'VOLKSWAGEN',
+                'modelo' => '2018', 
+                'tipo' => 'Hachback'
+            ),
+            'Propietario' => array(
+                'nombre' => 'María Fernández',
+                'ciudad' => 'Amozoc, Pue.',
+                'direccion' => 'Calle Hidalgo'
+            )
+        ),
+        'FGH3456' => array(
+            'auto' => array(
+                'marca' => 'Audi',
+                'modelo' => '2021', 
+                'tipo' => 'Sedan'
+            ),
+            'Propietario' => array(
+                'nombre' => 'Guillermo Hernnadez',
+                'ciudad' => 'Puebla, Pue.',
+                'direccion' => 'Huexotitla'
+            )
+        ),
+        'IJA3654' => array(
+            'auto' => array(
+                'marca' => 'Bmw',
+                'modelo' => '2019', 
+                'tipo' => 'Camioneta'
+            ),
+            'Propietario' => array(
+                'nombre' => 'Valeria Reyes',
+                'ciudad' => 'Tecamachalco, Pue.',
+                'direccion' => 'Av. Central'
+            )
+        ),
+        'CHI2889' => array(
+            'auto' => array(
+                'marca' => 'Mercedes',
+                'modelo' => '2020', 
+                'tipo' => 'hachback'
+            ),
+            'Propietario' => array(
+                'nombre' => 'Johan Reyes',
+                'ciudad' => 'Tehuacán, Pue.',
+                'direccion' => 'Zona ALta'
+            )
+        ),
+        'HOY2257' => array(
+            'auto' => array(
+                'marca' => 'Honda',
+                'modelo' => '2005', 
+                'tipo' => 'sedan'
+            ),
+            'Propietario' => array(
+                'nombre' => 'David Ramirez',
+                'ciudad' => 'Puebla, Pue.',
+                'direccion' => 'San Baltazar'
+            )
+        ),
+        'LRF2566' => array(
+            'auto' => array(
+                'marca' => 'Jeep',
+                'modelo' => '2023', 
+                'tipo' => 'Camioneta'
+            ),
+            'Propietario' => array(
+                'nombre' => 'Metzli Barrera',
+                'ciudad' => 'Tehuacan, Pue.',
+                'direccion' => 'Los Pinos'
+            )
+        ),
+    );
+
+    
+    function autoMatricula($matricula){
+        global $parqueVehicular;
+        if (array_key_exists($matricula, $parqueVehicular)) {
+            $auto = $parqueVehicular[$matricula];
+            echo "<h2>Información del Auto</h2>";
+            echo "<p>Matrícula: $matricula</p>";
+            echo "<p>Marca: " . $auto["auto"]["marca"] . "</p>";
+            echo "<p>Modelo: " . $auto["auto"]["modelo"] . "</p>";
+            echo "<p>Tipo: " . $auto["auto"]["tipo"] . "</p>";
+            echo "<p>Nombre del Propietario: " . $auto["Propietario"]["nombre"] . "</p>";
+            echo "<p>Ciudad: " . $auto["Propietario"]["ciudad"] . "</p>";
+            echo "<p>Dirección: " . $auto["Propietario"]["direccion"] . "</p>";
+        } else {
+            echo "<p>La matrícula no existe en el registro.</p>";
+        }
+    }
+
+    function mostrarAutos() {
+        global $parqueVehicular;
+        foreach ($parqueVehicular as $matricula => $auto) {
+            echo "<h3>Matrícula: $matricula</h3>";
+            echo "<p>Marca: " . $auto["auto"]["marca"] . "</p>";
+            echo "<p>Modelo: " . $auto["auto"]["modelo"] . "</p>";
+            echo "<p>Tipo: " . $auto["auto"]["tipo"] . "</p>";
+            echo "<p>Nombre del Propietario: " . $auto["Propietario"]["nombre"] . "</p>";
+            echo "<p>Ciudad: " . $auto["Propietario"]["ciudad"] . "</p>";
+            echo "<p>Dirección: " . $auto["Propietario"]["direccion"] . "</p>";
+            echo "<hr>";
         }
     }
 ?>
