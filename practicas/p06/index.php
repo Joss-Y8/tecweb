@@ -121,22 +121,17 @@
         <button type="submit">Enviar</button>
     </form>
     <?php
-        // Incluir funciones externas
         require_once __DIR__.'/src/funciones.php';
-
-        // Procesar el formulario cuando se envíe
         if ($_SERVER["REQUEST_METHOD"] == "POST") { 
-            // Verificar si los valores están presentes en $_POST
             if (isset($_POST['edad']) && isset($_POST['sexo'])) {
-                // Obtener valores del formulario
+                
                 $edad = $_POST['edad'];
                 $sexo = $_POST['sexo'];
 
-                // Llamar a la función para identificar a la persona
                 $mensaje = identificarPersona($edad, $sexo);
 
-                // Mostrar el mensaje
                 echo "<h3>Resultado:</h3>";
+                echo "Su edad es: $edad años y su sexo es $sexo.<br>";
                 echo "<p>$mensaje</p>";
             }
         }
