@@ -13,7 +13,7 @@
     if (isset($_GET['tope'])) {
         $tope = $_GET['tope'];
     } else {
-        die('<p>Error: Falta el parámetro "tope" en la URL.</p>');
+        die('<p>Falta el parámetro "tope" en la URL.</p>');
     }
 
     if (!empty($tope)) {
