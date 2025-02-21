@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro productos</title>
+    
+    <style type="text/css">
+        ol, ul { list-style-type: none;}
+        body { font-family: Arial, sans-serif; }
+    </style>
+</head>
+<body>
+    <h2>Registro de nuevos productos en marketzone</h2>
+    <form id="formularioProductos" action="http://localhost/tecweb/practicas/p08/productos/set_producto_v2.php" method="post" enctype="multipart/form-data"> 
+        <fieldset><legend><h2>Descripción del producto</h2></legend>
+            <ul>
+                <li><label for="form-nombre">Nombre del producto:</label> <input type="text" name="nombre" id="form-nombre" required></li>
+                <li><label for="form-marca">Marca del producto:</label> <input type="text" name="marca" id="form-marca" requiered></li>
+                <li><label for="form-modelo">Modelo del producto:</label> <input type="text" name="modelo" id="form-modelo" requiered></li>
+                <li><label for="form-descripcion">Descripción del producto</label><br><textarea name="descripción" rows="4" cols="60" id="form-descripcion" placeholder="No más de 250 caracteres de longitud" requiered></textarea></li>
+            </ul>
+        </fieldset>
+        <fieldset><legend><h2>Costos</h2></legend>
+            <ul>
+                <li><label for="form-precio">Precio del producto:</label> <input type="number" name="precio" id="form-precio" requiered></li>
+                <li><label for="form-unidades">Unidades en existencia:</label> <input type="number" name="unidades" id="form-unidades" requiered></li>
+            </ul>
+        </fieldset>
+        <fieldset><legend><h2>Visuales</h2></legend>
+            <ul>
+                <li><label for="form-imagen">Imagen del producto:</label> <input type="file" name="imagen" id="form-imagen" accept="image/*" requiered></li>
+            </ul>
+        </fieldset>
+        <p>
+            <input type="submit" value="Registrar producto">
+            <input type="reset">
+          </p>
+        
+   </form>
+    
+</body>
+</html>
