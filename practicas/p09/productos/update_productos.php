@@ -12,11 +12,11 @@
         die("ID de producto no válido");
     }
 
-    $id = intval($_POST['id']); // Convertir a número entero para mayor seguridad
+    $id = intval($_POST['id']); 
     $nombre = $_POST['nombre'];
     $marca = $_POST['marca'];
     $modelo = $_POST['modelo'];
-    $detalles = $_POST['descripcion']; // Asegúrate de que este campo sea correcto
+    $detalles = $_POST['descripcion']; 
     $precio = $_POST['precio'];
     $unidades = $_POST['unidades'];
 
