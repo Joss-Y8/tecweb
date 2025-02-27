@@ -73,10 +73,12 @@
         }
     ?>
     <h1>Registro de nuevos productos en marketzone</h1>
-    <form id="formularioProductos" action="http://localhost/tecweb/practicas/p09/productos/set_producto_v2.php" method="post" enctype="multipart/form-data"> 
+    <form id="formularioProductos" action="http://localhost/tecweb/practicas/p09/productos/update_productos.php" method="post" enctype="multipart/form-data"> 
+        <input type="hidden" name="id" value="<?= isset($product['id']) ? htmlspecialchars($product['id']) : '' ?>">
         <fieldset><legend><h2>Descripción del producto</h2></legend>
             <ul>
-                <li><label for="form-nombre">Nombre del producto:</label> <input type="text" name="nombre" id="form-nombre" value="<?= isset($product) ? $product['nombre'] : ''?>"><div id="error1" style="color: red;"></div></li>
+                <li><label for="form-nombre">Nombre del producto:</label> 
+                    <input type="text" name="nombre" id="form-nombre" value="<?= isset($product) ? $product['nombre'] : ''?>"><div id="error1" style="color: red;"></div></li>
                 <li>
                     <label for="form-marca">Marca del producto:</label> 
                     <select name="marca" id="form-marca">
@@ -87,11 +89,11 @@
                         <option value="Roland" <?= isset($product) && $product['marca'] == 'Roland' ? 'selected' : '' ?>>Roland</option>
                         <option value="Ibanez" <?= isset($product) && $product['marca'] == 'Ibanez' ? 'selected' : '' ?>>Ibanez</option>
                         <option value="Casio" <?= isset($product) && $product['marca'] == 'Casio' ? 'selected' : '' ?>>Casio</option>
-                        <option value="Casio" <?= isset($product) && $product['marca'] == 'Korg' ? 'selected' : '' ?>>Korg</option>
+                        <option value="Korg" <?= isset($product) && $product['marca'] == 'Korg' ? 'selected' : '' ?>>Korg</option>
                     </select><div id="error2" style="color: red;"></div>
                 </li>
                 <li><label for="form-modelo">Modelo del producto:</label> <input type="text" name="modelo" id="form-modelo" value="<?= isset($product) ? $product['modelo'] : '' ?>"><div id="error3" style="color: red;"></div></li>
-                <li><label for="form-descripcion">Descripción del producto</label><br><textarea name="descripcion" rows="4" cols="60" id="form-descripcion"> <?= isset($product) ? $product['detalles'] : '' ?></textarea><div id="error4" style="color: red;"></div></li>
+                <li><label for="form-descripcion">Descripción del producto</label><br><textarea name="descripcion" rows="4" cols="60" id="form-descripcion"><?= isset($product) ? $product['detalles'] : '' ?></textarea><div id="error4" style="color: red;"></div></li>
             </ul>
         </fieldset>
         <fieldset><legend><h2>Costos</h2></legend>

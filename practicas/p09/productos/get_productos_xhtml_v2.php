@@ -58,7 +58,7 @@
         <script>
     		function modificarProducto(event) {
 				var row = event.target.closest("tr"); 
-				var id = row.querySelector(".id").textContent;
+				var id = row.querySelector(".id").textContent.trim();
 
 				// Redirigir solo con el ID, los demás datos se obtienen en el formulario
 				var url = `formulario_productos_v2.php?id=${encodeURIComponent(id)}`;

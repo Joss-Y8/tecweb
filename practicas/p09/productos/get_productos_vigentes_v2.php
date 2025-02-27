@@ -3,35 +3,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
 <?php
     $data = array();
+    @$link = new mysqli('localhost', 'root', 'jojoyrl8', 'marketzone');
 
-	if(isset($_GET['tope'])) {
-		$tope = $_GET['tope'];
-    } else {
-        die('Parámetro "tope" no detectado...');
+    if ($link->connect_errno) {
+        die('Falló la conexión: '.$link->connect_error.'<br/>');
     }
 
-	if (!empty($tope)) {
-		@$link = new mysqli('localhost', 'root', 'jojoyrl8', 'marketzone');
+    // Consulta sin depender de 'tope'
+    $sql = "SELECT * FROM productos WHERE eliminado = 0";
 
-		if ($link->connect_errno) {
-			die('Falló la conexión: '.$link->connect_error.'<br/>');
-		}
-
-		/** Consulta SQL modificada para excluir productos eliminados */
-		if ($result = $link->query("SELECT * FROM productos WHERE unidades <= $tope AND eliminado = 0")) {
-            $row = $result->fetch_all(MYSQLI_ASSOC);
-            
-            foreach($row as $num => $registro) {
-                foreach($registro as $key => $value) {
-                    $data[$num][$key] = utf8_encode($value);
-                }
+    if ($result = $link->query($sql)) {
+        $row = $result->fetch_all(MYSQLI_ASSOC);
+        
+        foreach ($row as $num => $registro) {
+            foreach ($registro as $key => $value) {
+                $data[$num][$key] = utf8_encode($value);
             }
+        }
+        $result->free();
+    }
 
-			$result->free();
-		}
-
-		$link->close();
-	}
+    $link->close();
 ?>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -39,14 +31,14 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 	<script>
-    function modificarProducto(event) {
-        var row = event.target.closest("tr"); 
-        var id = row.querySelector(".id").textContent;
+		function modificarProducto(event) {
+			var row = event.target.closest("tr"); 
+			var id = row.querySelector(".id").textContent.trim();
 
-        // Redirigir solo con el ID, los demás datos se obtienen en el formulario
-        var url = `formulario_productos_v2.php?id=${encodeURIComponent(id)}`;
-        window.location.href = url;
-    }
+			// Redirigir solo con el ID, los demás datos se obtienen en el formulario
+			var url = `formulario_productos_v2.php?id=${encodeURIComponent(id)}`;
+			window.location.href = url;
+		}
 	</script>
 
 </head>
