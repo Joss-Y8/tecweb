@@ -56,9 +56,15 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <script>
-            function modificarProducto(event)
-            
-        </script>
+    		function modificarProducto(event) {
+				var row = event.target.closest("tr"); 
+				var id = row.querySelector(".id").textContent;
+
+				// Redirigir solo con el ID, los demás datos se obtienen en el formulario
+				var url = `formulario_productos_v2.php?id=${encodeURIComponent(id)}`;
+				window.location.href = url;
+			}
+		</script>
 	</head>
 	<body>
 		<h3>PRODUCTO</h3>
@@ -81,27 +87,29 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach($row as $value) : ?>
-					<tr>
-						<th scope="row"><?= $value['id'] ?></th>
-						<td><?= $value['nombre'] ?></td>
-						<td><?= $value['marca'] ?></td>
-						<td><?= $value['modelo'] ?></td>
-						<td><?= $value['precio'] ?></td>
-						<td><?= $value['unidades'] ?></td>
-						<td><?= $value['detalles'] ?></td>
-						<td><img src=<?= $value['imagen'] ?> width="200" height="200" ></td>
-                        <td><a href="editar_producto.php?id=<?= $value['id'] ?>" class="btn btn-primary">Modificar</a></td>
-					</tr>
-					<?php endforeach; ?>
-				</tbody>
+				<?php foreach($row as $value) : ?>
+				<tr>
+					<th class="id" scope="row"><?= $value['id'] ?></th>
+					<td class="nombre"><?= $value['nombre'] ?></td>
+					<td class="marca"><?= $value['marca'] ?></td>
+					<td class="modelo"><?= $value['modelo'] ?></td>
+					<td class="precio"><?= $value['precio'] ?></td>
+					<td class="unidades"><?= $value['unidades'] ?></td>
+					<td class="detalles"><?= $value['detalles'] ?></td>
+					<td><img class="imagen" src="<?=$value['imagen'] ?>" width="100"></td>
+					<td>
+						<button type="button" class="btn btn-warning" onclick="modificarProducto(event)">Modificar</button>
+					</td>
+				</tr>
+				<?php endforeach; ?>
+			</tbody>
 			</table>
-		<?php elseif(!empty($id)) : ?>
-
-			 <script>
-                alert('El ID del producto no existe');
-             </script>
-
-		<?php endif; ?>
+			<?php elseif(!empty($id)) : ?>
+		 <script>
+            alert('El ID del producto no existe');
+         </script>
+	<?php else : ?>
+		<p>No hay productos disponibles.</p>
+	<?php endif; ?>
 	</body>
 </html>
