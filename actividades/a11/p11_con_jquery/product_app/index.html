@@ -33,9 +33,34 @@
               <form id="product-form">
                 <div class="form-group">
                   <input class="form-control" type="text" id="name" placeholder="Nombre de producto">
+                  <div id="error-nombre" style="color: red;"></div>
+
                 </div>
                 <div class="form-group">
-                  <textarea class="form-control" id="description" cols="30" rows="10" placeholder="JSON de producto"></textarea>
+                  <!--<textarea class="form-control" id="description" cols="30" rows="10" placeholder="JSON de producto"></textarea>- Este es el textarea que se elimina-->
+                    <ul>
+                      <li><label for="form-precio">Precio del producto:</label> <input type="number" name="precio" id="form-precio" step="any" min="0"><div id="error5" style="color: red;"></div></li>
+                      <li><label for="form-unidades">Unidades en existencia:</label> <input type="number" name="unidades" id="form-unidades"><div id="error6" style="color: red;"></div></li>
+                      <li><label for="form-modelo">Modelo del producto:</label> <input type="text" name="modelo" id="form-modelo"><div id="error3" style="color: red;"></div></li>
+                      <li>
+                          <label for="form-marca">Marca del producto:</label> 
+                          <select name="marca" id="form-marca">
+                              <option value="">Seleccione una marca</option>
+                              <option value="Fender">Fender</option>
+                              <option value="Gibson">Gibson</option>
+                              <option value="Yamaha">Yamaha</option>
+                              <option value="Roland">Roland</option>
+                              <option value="Ibanez">Ibanez</option>
+                              <option value="Casio">Casio</option>
+                              <option value="Casio">Korg</option>
+                          </select><div id="error2" style="color: red;"></div>
+                      </li>
+                      <li><label for="form-descripcion">Descripción del producto</label><br><textarea name="descripcion" rows="10" cols="30" id="form-descripcion" placeholder="No más de 250 caracteres de longitud"></textarea><div id="error4" style="color: red;"></div></li>
+                      <li><label for="form-imagen">Imagen del producto:</label> 
+                        <input type="file" name="imagen" id="form-imagen" accept="image/*">
+                        <input type="hidden" name="imagen_defecto" id="imagen_defecto" value="img/imagen.png"> 
+                      </li>
+                    </ul>
                 </div>
                 <input type="hidden" id="productId">
                 <button class="btn btn-primary btn-block text-center" type="submit">
