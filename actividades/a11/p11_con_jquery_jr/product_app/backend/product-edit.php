@@ -21,20 +21,6 @@
     $detalles = $data['detalles'];
     $imagen = $data['imagen'];
 
-    // Validaciones básicas
-    if (empty($nombre) || strlen($nombre) > 100) {
-        echo json_encode(["status" => "error", "message" => "El nombre es obligatorio y debe tener menos de 100 caracteres."]);
-        exit;
-    }
-    if (!is_numeric($precio) || $precio <= 0) {
-        echo json_encode(["status" => "error", "message" => "El precio debe ser un número mayor a 0."]);
-        exit;
-    }
-    if (!is_numeric($unidades) || $unidades < 1) {
-        echo json_encode(["status" => "error", "message" => "Las unidades deben ser al menos 1."]);
-        exit;
-    }
-
     // Preparar la consulta para actualizar el producto
     $sql = "UPDATE productos SET nombre = ?, precio = ?, unidades = ?, modelo = ?, marca = ?, detalles = ?, imagen = ? WHERE id = ?";
     if ($stmt = $conexion->prepare($sql)) {
