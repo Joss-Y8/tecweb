@@ -1,43 +1,29 @@
 <?php
-        
     include_once __DIR__.'/database.php';
 
+    // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
     $data = array();
 
-    // Verificar si se recibió el ID
-    if (isset($_POST['id'])) {
-        $id = $_POST['id'];  
+    if( isset($_POST['id']) ) {
+        $id = $_POST['id'];
+        // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
+        if ( $result = $conexion->query("SELECT * FROM productos WHERE id = {$id}") ) {
+            // SE OBTIENEN LOS RESULTADOS
+            $row = $result->fetch_assoc();
 
-        $sql = "SELECT * FROM productos WHERE id = ? AND eliminado = 0";
-        if ($stmt = $conexion->prepare($sql)) {
-            $stmt->bind_param("i", $id);  
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            // Verificar si se encontraron resultados
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc(); 
-
-                // Codificar los datos a UTF-8
-                foreach ($row as $key => $value) {
-                    $data[$key] = utf8_encode($value); 
+            if(!is_null($row)) {
+                // SE CODIFICAN A UTF-8 LOS DATOS Y SE MAPEAN AL ARREGLO DE RESPUESTA
+                foreach($row as $key => $value) {
+                    $data[$key] = utf8_encode($value);
                 }
-
-                // Retornar el producto en formato JSON
-                echo json_encode($data, JSON_PRETTY_PRINT);
-            } else {
-                // Si no se encuentra el producto, simplemente retornamos un JSON vacío
-                echo json_encode([]);
             }
-
-            $stmt->close();
+            $result->free();
         } else {
-            // Si hay error al preparar la consulta, retornamos un JSON vacío
-            echo json_encode([]);
+            die('Query Error: '.mysqli_error($conexion));
         }
         $conexion->close();
-    } else {
-        // Si no se recibe el ID, simplemente retornamos un JSON vacío
-        echo json_encode([]);
     }
+
+    // SE HACE LA CONVERSIÓN DE ARRAY A JSON
+    echo json_encode($data, JSON_PRETTY_PRINT);
 ?>
