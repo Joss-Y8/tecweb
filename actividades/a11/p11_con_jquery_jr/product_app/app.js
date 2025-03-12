@@ -102,45 +102,59 @@ $(document).ready(function () {
         }
     });
 
-
-    // Formulario de producto
-    $("#product-form").submit(function (e) {
+    $('#product-form').submit(e => {
         e.preventDefault();
-        let productoJsonString = $("#description").val();
-        let finalJSON = JSON.parse(productoJsonString);
-        finalJSON['nombre'] = $("#name").val();
-        finalJSON['id'] = $("#productId").val(); // Agregar el ID del producto al JSON
-
+        
         // Validaciones
         let mensajeError = "";
-        if (!finalJSON['nombre'].trim() || finalJSON['nombre'].length > 100) {
-            mensajeError = "El nombre del producto es obligatorio y debe tener menos de 100 caracteres.";
-        } else if (finalJSON['marca'].length > 25) {
-            mensajeError = "La marca no debe exceder los 25 caracteres.";
-        } else if (finalJSON['modelo'].length > 25) {
-            mensajeError = "El modelo no debe exceder los 25 caracteres.";
-        } else if (finalJSON['detalles'].length > 250) {
-            mensajeError = "La descripción no debe exceder los 250 caracteres.";
-        } else if (finalJSON['precio'] <= 0) {
+        const nombre = $('#name').val(); 
+        const precio = $('#form-precio').val();
+        const unidades = $('#form-unidades').val();
+        const modelo = $('#form-modelo').val();
+        const marca = $('#form-marca').val();
+        const descripcion = $('#form-descripcion').val();
+    
+        if(!nombre || nombre.length > 100){
+            mensajeError = "El nombre es obligatorio y no puede contener más de 100 caracteres"; 
+        }else if(!precio || precio <= 0) {
             mensajeError = "El precio debe ser mayor a 0.";
-        } else if (finalJSON['unidades'] < 1) {
+        } else if (unidades < 1) {
             mensajeError = "Debe haber al menos una unidad.";
+        } else if (!modelo || modelo.length > 25) {
+            mensajeError = "El modelo no debe exceder los 25 caracteres.";
+        } else if (!marca) {
+            mensajeError = "Debe seleccionar una marca.";
+        } else if (descripcion.length > 250) {
+            mensajeError = "La descripción no debe exceder los 250 caracteres.";
         }
-
+        
         if (mensajeError) {
-            $("#container").html(`<li style="list-style: none;">${mensajeError}</li>`);
+            $('#container').html(`<li style="list-style: none;">${mensajeError}</li>`);
             $("#product-result").addClass("d-block");
             return;
         }
-
-        // Si es una edición, cambia la URL
-        let url = edit ? "./backend/product-edit.php" : "./backend/product-add.php";  // Dependiendo si es edición o no
+        
+        // Preparar los datos del producto en formato JSON
+        let postData = JSON.stringify({
+            nombre: $('#name').val(),
+            precio: precio,
+            unidades: unidades,
+            modelo: modelo,
+            marca: marca,
+            detalles: descripcion,
+            imagen: $('#imagen_defecto').val(),
+            id: $('#productId').val() 
+        });
+        
+        // Determinar la URL dependiendo si estamos editando o agregando
+        const url = edit ? './backend/product-edit.php' : './backend/product-add.php';
+        
         $.ajax({
             url: url,
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(finalJSON),
-            success: function (response) {
+            method: 'POST',
+            data: postData,
+            contentType: 'application/json', // Asegura que el contenido se envíe como JSON
+            success: function(response) {
                 let respuesta = JSON.parse(response);
                 let template_bar = `
                     <li style="list-style: none;">status: ${respuesta.status}</li>
@@ -150,12 +164,14 @@ $(document).ready(function () {
                 $("#product-result").addClass("d-block");
 
                 $('#product-form').trigger('reset');
-                $("#description").val(JSON.stringify(baseJSON, null, 2));
-
-                listarProductos();
+                listarProductos();  
+                edit = false;  
+                $('button.btn-primary').text("Agregar Producto");
+               
             }
         });
     });
+    
 
     // Eliminar producto
     $(document).on("click", ".product-delete", function () {
@@ -177,13 +193,13 @@ $(document).ready(function () {
     // Editar producto
     $(document).on('click', '.product-item', function() {
         let element = $(this)[0].parentElement.parentElement;
-        let id = $(element).attr('productId'); // Obtener el ID del producto
+        let id = $(element).attr('productId'); 
     
         $.post('./backend/product-single.php', { id }, function(response) {
             console.log('Respuesta del servidor:', response);  
             let product = JSON.parse(response);  
         
-            // Rellenar los campos del formulario con los datos del producto
+            // Aquí se rellenan los datos del formulario obtenidos de la BD
             $('#name').val(product.nombre);
             $('#form-precio').val(product.precio);
             $('#form-unidades').val(product.unidades);
@@ -192,7 +208,7 @@ $(document).ready(function () {
             $('#form-descripcion').val(product.detalles);
             $('#imagen_defecto').val(product.imagen); 
         
-            // Establecer el ID del producto para editar
+            //id de producto a editar 
             $('#productId').val(product.id);
         
             // Cambiar el texto del botón
