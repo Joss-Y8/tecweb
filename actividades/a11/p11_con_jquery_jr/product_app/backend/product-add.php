@@ -5,7 +5,7 @@
     $producto = file_get_contents('php://input');
     $data = array(
         'status'  => 'error',
-        'message' => 'Ya existe un producto con ese nombre'
+        'message' => 'Ya existe un producto con ese nombre' 
     );
     if(!empty($producto)) {
         // SE TRANSFORMA EL STRING DEL JASON A OBJETO
