@@ -222,11 +222,11 @@ $(document).ready(function () {
     $(document).on('click', '.product-item', function (e) {
         e.preventDefault();
 
-        const element = $(this).closest('tr'); // Obtiene la fila completa del producto
-        const id = element.attr('productId'); // Extrae el ID del producto
+        const element = $(this).closest('tr');  
+        const id = element.attr('productId'); 
 
         $.post('./backend/product-single.php', { id }, function (response) {
-            let product = JSON.parse(response); // Convierte el JSON a objeto
+            let product = JSON.parse(response); 
 
             // Llenar los campos del formulario con los datos del producto
             $('#name').val(product.nombre);
@@ -235,10 +235,10 @@ $(document).ready(function () {
             $('#form-modelo').val(product.modelo);
             $('#form-marca').val(product.marca);
             $('#form-descripcion').val(product.detalles);
-            6//$('#form-imagen').val(''); // Limpia el campo de imagen (para evitar problemas)
-            $('#imagen_defecto').val(product.imagen); // Guarda la imagen actual si no se cambia
+            6//$('#form-imagen').val(''); // Limpia el campo de imagen
+            $('#imagen_defecto').val(product.imagen);
 
-            // Guarda el ID en el campo oculto para su edición
+            // Guarda el ID en el campo oculto para su edición 
             $('#productId').val(product.id);
 
             edit = true;
