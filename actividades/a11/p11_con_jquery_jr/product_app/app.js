@@ -73,6 +73,36 @@ $(document).ready(function () {
         });
     });
 
+    $('#name').on('keyup', function() {
+        const nombre = $(this).val();
+
+        if (nombre) {
+            $.ajax({
+                url: './backend/product-search.php', 
+                method: 'GET',
+                data: { search: nombre },
+                success: function(response) {
+                    const data = JSON.parse(response);
+                    
+                    if (data.length > 0) {
+                        $('#error-nombre').text('El nombre del producto ya existe en la base de datos').css('color', 'yellow');
+                        $('#product-form button').prop('disabled', true);
+                    } else {
+                        $('#error-nombre').text('');
+                        $('#product-form button').prop('disabled', false);
+                    }
+                },
+                error: function() {
+                    $('#error-nombre').text('Hubo un error en la validación').css('color', 'red');
+                }
+            });
+        } else {
+            $('#error-nombre').text('');
+            $('#product-form button').prop('disabled', false);
+        }
+    });
+
+
     // Formulario de producto
     $("#product-form").submit(function (e) {
         e.preventDefault();
@@ -145,31 +175,32 @@ $(document).ready(function () {
     });
 
     // Editar producto
-    $(document).on('click', '.product-item', function(){
+    $(document).on('click', '.product-item', function() {
         let element = $(this)[0].parentElement.parentElement;
-        let id = $(element).attr('productId'); 
-
-        $.post('./backend/product-single.php', {id}, function(response){
-            const product = JSON.parse(response);
-            $('#name').val(product[0].nombre); 
-            $('#description').val(JSON.stringify({
-                precio: product[0].precio,
-                unidades: product[0].unidades,
-                modelo: product[0].modelo,
-                marca: product[0].marca,
-                detalles: product[0].detalles,
-                imagen: product[0].imagen
-            }, null, 2));
-
-            // Guardar el ID en el campo oculto
-            $("#productId").val(id);
-            edit = true; // Indicar que estamos en modo edición
-            // Cambiar el texto del botón a "Editar Producto"
-            $("#submit-btn").text("Editar Producto");
-
-            
-        });
+        let id = $(element).attr('productId'); // Obtener el ID del producto
+    
+        $.post('./backend/product-single.php', { id }, function(response) {
+            console.log('Respuesta del servidor:', response);  
+            let product = JSON.parse(response);  
+        
+            // Rellenar los campos del formulario con los datos del producto
+            $('#name').val(product.nombre);
+            $('#form-precio').val(product.precio);
+            $('#form-unidades').val(product.unidades);
+            $('#form-modelo').val(product.modelo);
+            $('#form-marca').val(product.marca);
+            $('#form-descripcion').val(product.detalles);
+            $('#imagen_defecto').val(product.imagen); 
+        
+            // Establecer el ID del producto para editar
+            $('#productId').val(product.id);
+        
+            // Cambiar el texto del botón
+            edit = true;
+            $('button.btn-primary').text("Modificar Producto");
+        });        
     });
+    
 
     init();
 });
