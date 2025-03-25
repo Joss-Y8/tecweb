@@ -1,5 +1,5 @@
 <?php
-    include_once __DIR__ . '/database.php';
+    /*include_once __DIR__ . '/database.php';
 
     // Capturar datos JSON enviados desde el frontend
     $input = file_get_contents("php://input");
@@ -40,7 +40,17 @@
         echo json_encode(["status" => "error", "message" => "Error preparando la consulta: " . $conexion->error]);
     }
 
-    $conexion->close();
+    $conexion->close();*/
+
+    
+
+    use TECWEB\MYAPI\Products as Products; 
+    require_once __DIR__.'/myapi/Products.php'; 
+    
+    $prodObj = new Products('marketzone'); 
+    $prodObj->edit($prodObj);
+    
+    //echo json_encode ($prodObj->getData()); 
 ?>
 
 
