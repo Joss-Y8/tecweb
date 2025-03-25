@@ -16,6 +16,8 @@ $(document).ready(function () {
     // Función para listar productos
     function listarProductos() {
         $.get("./backend/product-list.php", function (data) {
+            console.log("Tipo de dato recibido:", typeof data);
+            console.log("Respuesta del servidor:", data);
             let productos = JSON.parse(data);
             let template = "";
             productos.forEach(producto => {
@@ -155,6 +157,7 @@ $(document).ready(function () {
             data: postData,
             contentType: 'application/json', // Asegura que el contenido se envíe como JSON
             success: function(response) {
+                console.log("Respuesta del servidor:", response); 
                 let respuesta = JSON.parse(response);
                 let template_bar = `
                     <li style="list-style: none;">status: ${respuesta.status}</li>
