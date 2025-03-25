@@ -1,5 +1,5 @@
 <?php
-    include_once __DIR__.'/database.php';
+    /*include_once __DIR__.'/database.php';
 
     // SE OBTIENE LA INFORMACIÓN DEL PRODUCTO ENVIADA POR EL CLIENTE
     $producto = file_get_contents('php://input');
@@ -31,5 +31,13 @@
     }
 
     // SE HACE LA CONVERSIÓN DE ARRAY A JSON
-    echo json_encode($data, JSON_PRETTY_PRINT);
+    echo json_encode($data, JSON_PRETTY_PRINT);*/
+    
+    use TECWEB\MYAPI\Products as Products; 
+    require_once __DIR__.'/myapi/Products.php';
+    $prodObj = new Products('marketzone');
+    $prodObj->add($prodObj); 
+    echo json_encode($prodObj->getData());
+
+
 ?>
