@@ -1,10 +1,13 @@
 <?php
 
+namespace TECWEB\MYAPI\CREATE; 
+    use TECWEB\MYAPI\DataBase as Database; 
+
     class Create extends DataBase{
 
-        public function __construct($db, $user='root', $pass='jojoyrl8'){ //quitar usua
+        public function __construct($db){ 
             $this->data = array(); 
-            parent::__construct($user, $pass, $db); 
+            parent::__construct($db); 
         }
 
         public function add ($prod){

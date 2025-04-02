@@ -1,10 +1,12 @@
 <?php
+    namespace TECWEB\MYAPI\READ;
+    use TECWEB\MYAPI\DataBase as Database; 
 
     Class Read extends DataBase{
 
-        public function __construct($db, $user='root', $pass='jojoyrl8'){ //quitar usua
+        public function __construct($db){ 
             $this->data = array(); 
-            parent::__construct($user, $pass, $db); 
+            parent::__construct($db); 
         }
 
         public function list(){
@@ -81,6 +83,23 @@
                 }
                 $this->conexion->close();
             }
+        }
+
+        public function singleByName($name){
+            $this->data = []; 
+
+            if($name){
+                if($stmt = $this->conexion->prepare("SELECT * FROM productos WHERE nombre = ? AND eliminado = 0")){
+                    $stmt->bind_param("s", $name); 
+                    if($stmt->execute()){
+                        $result = $stmt->get_result(); 
+                        $this->data=$result->fetch_assoc() ?? []; 
+                    }
+                    $stmt->close(); 
+                }
+            }
+            $this->conexion->close(); 
+
         }
     }
 ?>

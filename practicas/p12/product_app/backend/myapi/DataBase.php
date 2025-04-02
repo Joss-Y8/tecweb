@@ -5,7 +5,7 @@
         protected $conexion; 
         protected $data = NULL; 
 
-        public function  __construct( $user, $pass, $db){
+        public function  __construct($db, $user = 'root', $pass = "jojoyrl8"){
         $this->conexion = @mysqli_connect('localhost',$user, $pass, $db);
 
             if(!$this->conexion){ 
