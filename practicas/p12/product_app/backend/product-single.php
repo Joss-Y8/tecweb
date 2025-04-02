@@ -1,9 +1,10 @@
 <?php
     
-    use TECWEB\MYAPI\Products as Products; 
-    require_once __DIR__.'/myapi/Products.php'; 
+    require_once __DIR__ . '/vendor/autoload.php'; 
+
+     use TECWEB\MYAPI\READ\Read as Read;; 
     
-    $prodObj = new Products('marketzone'); 
+    $prodObj = new Read('marketzone'); 
     $id = isset($_GET['id']) ? $_GET['id'] : '';
     $prodObj->single($id);
     
