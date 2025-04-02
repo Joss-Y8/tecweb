@@ -1,9 +1,10 @@
 <?php
-    use TECWEB\MYAPI\Products as Products; 
-    require_once __DIR__.'/myapi/Products.php'; 
+     require_once __DIR__ . '/vendor/autoload.php'; 
+
+     use TECWEB\MYAPI\DELETE\Delete as Delete; 
     
     $id = isset($_GET['id']) ? $_GET['id'] : '';
-    $prodObj = new Products('marketzone'); 
+    $prodObj = new Delete('marketzone'); 
     $prodObj->delete($id);
     
     echo json_encode ($prodObj->getData()); 
