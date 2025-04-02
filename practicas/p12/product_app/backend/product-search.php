@@ -1,9 +1,10 @@
 <?php
-    use TECWEB\MYAPI\Products as Products; 
-    require_once __DIR__.'/myapi/Products.php'; 
+    require_once __DIR__ . '/vendor/autoload.php'; 
+
+    use TECWEB\MYAPI\READ\Read as Read;
     
     $search = isset($_GET['search']) ? $_GET['search'] : '';
-    $prodObj = new Products('marketzone'); 
+    $prodObj = new Read('marketzone'); 
 
     if(!empty($search)){
         $prodObj->search($search); 
