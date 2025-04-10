@@ -3,7 +3,7 @@
     use Psr\Http\Message\ServerRequestInterface as Request; 
     use Slim\Factory\AppFactory; 
 
-    require 'vendor/autoload.php'; 
+    require_once __DIR__ .'/vendor/autoload.php'; 
 
     $app = AppFactory::create(); 
     $app->setBasepath("/tecweb/practicas/p17"); 
@@ -13,6 +13,12 @@
         $response->getBody()->write("Hola Mundo Slim!!!");
         return $response;  
     });
+ 
+
+    $app->get("/hola[/{nombre}]", function($request, $response, $args){
+        $response->getBody()->write("Hola, ". $args["nombre"]); 
+        return $response; 
+    }); 
 
     $app->run(); 
 ?>
