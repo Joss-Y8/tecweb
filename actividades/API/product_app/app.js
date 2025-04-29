@@ -15,10 +15,11 @@ $(document).ready(function () {
 
     // Función para listar productos
     function listarProductos() {
-        $.get("./backend/product-list.php", function (data) {
+        $.get("http://localhost/tecweb/actividades/API/product_app/backend/index.php/products", function (data) {
             console.log("Tipo de dato recibido:", typeof data);
             console.log("Respuesta del servidor:", data);
-            let productos = JSON.parse(data);
+            //let productos = JSON.parse(data);
+            let productos = data; 
             let template = "";
             productos.forEach(producto => {
                 let descripcion = `
@@ -46,8 +47,8 @@ $(document).ready(function () {
     // Función de búsqueda de productos
     $("#search").on("input", function () {
         let search = $(this).val();
-        $.get("./backend/product-search.php", { search: search }, function (data) {
-            let productos = JSON.parse(data);
+        $.get(`http://localhost/tecweb/actividades/API/product_app/backend/index.php/products/${search}`, function (data) {
+            let productos = data;
             let template = "", template_bar = "";
             productos.forEach(producto => {
                 let descripcion = `
@@ -80,11 +81,11 @@ $(document).ready(function () {
 
         if (nombre) {
             $.ajax({
-                url: './backend/product-search.php', 
+                url: `http://localhost/tecweb/actividades/API/product_app/backend/index.php/products/${nombre}`, 
                 method: 'GET',
                 data: { search: nombre },
                 success: function(response) {
-                    const data = JSON.parse(response);
+                    const data = response;
                     
                     if (data.length > 0) {
                         $('#error-nombre').text('El nombre del producto ya existe en la base de datos').css('color', 'yellow');
@@ -149,16 +150,17 @@ $(document).ready(function () {
         });
         
         // Determinar la URL dependiendo si estamos editando o agregando
-        const url = edit ? './backend/product-edit.php' : './backend/product-add.php';
+        const url = "http://localhost/tecweb/actividades/API/product_app/backend/index.php/product";
+        const method = edit ? 'PUT' : 'POST';
         
         $.ajax({
             url: url,
-            method: 'POST',
+            method: method,
             data: postData,
             contentType: 'application/json', // Asegura que el contenido se envíe como JSON
             success: function(response) {
                 console.log("Respuesta del servidor:", response); 
-                let respuesta = JSON.parse(response);
+                let respuesta = response;
                 let template_bar = `
                     <li style="list-style: none;">status: ${respuesta.status}</li>
                     <li style="list-style: none;">message: ${respuesta.message}</li>
@@ -180,8 +182,12 @@ $(document).ready(function () {
     $(document).on("click", ".product-delete", function () {
         if (confirm("¿De verdad deseas eliminar el Producto?")) {
             let id = $(this).closest("tr").attr("productId");
-            $.get("./backend/product-delete.php", { id: id }, function (response) {
-                let respuesta = JSON.parse(response);
+    
+            fetch(`http://localhost/tecweb/actividades/API/product_app/backend/index.php/product/${id}`, {
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(respuesta => {
                 let template_bar = `
                     <li style="list-style: none;">status: ${respuesta.status}</li>
                     <li style="list-style: none;">message: ${respuesta.message}</li>
@@ -198,9 +204,9 @@ $(document).ready(function () {
         let element = $(this)[0].parentElement.parentElement;
         let id = $(element).attr('productId'); 
     
-        $.post('./backend/product-single.php', { id }, function(response) {
+        $.get(`http://localhost/tecweb/actividades/API/product_app/backend/index.php/product/${id}`, function(response) {
             console.log('Respuesta del servidor:', response);  
-            let product = JSON.parse(response);  
+            let product = response;  
         
             // Aquí se rellenan los datos del formulario obtenidos de la BD
             $('#name').val(product.nombre);
