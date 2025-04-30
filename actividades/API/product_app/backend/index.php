@@ -13,7 +13,7 @@ use TECWEB\MYAPI\DELETE\Delete;
 
 $app = AppFactory::create();
 
-$app->setBasePath("/tecweb/actividades/API/product_app/backend/index.php");
+$app->setBasePath("/tecweb/actividades/API/product_app/backend");
 
 // Middleware para CORS, permite acceso a la API para que los metodos get, post, put y delete sean autorizados 
 $app->add(function (Request $request, $handler): Response {
